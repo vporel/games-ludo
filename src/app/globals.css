@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f1e7;
+  --bg-accent: #efe6d4;
+  --surface: #fffdf8;
+  --surface-2: #f3ecdf;
+  --field: #efe7d8;
+  --border: #e3d8c3;
+  --text: #2a2118;
+  --muted: #7a6b58;
+  --primary: #e5484d;
+  --primary-ink: #ffffff;
+
+  --red: #e5484d;
+  --red-soft: #fbd5d6;
+  --green: #2f9e66;
+  --green-soft: #cdeedb;
+  --yellow: #f2b200;
+  --yellow-soft: #fdeeb5;
+  --blue: #3e63dd;
+  --blue-soft: #d4defa;
+
+  --board-bg: #fffdf8;
+  --board-line: #d9ccb4;
+  --board-frame: #3a2e22;
+  --shadow: 0 1px 2px rgb(60 40 20 / 0.06), 0 8px 24px rgb(60 40 20 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17130f;
+    --bg-accent: #1f1914;
+    --surface: #231d17;
+    --surface-2: #2c251e;
+    --field: #19150f;
+    --border: #3a3128;
+    --text: #f4ece0;
+    --muted: #a8998a;
+    --primary: #ff6369;
+
+    --red: #ff6369;
+    --red-soft: #5a2427;
+    --green: #3dd68c;
+    --green-soft: #1d4a33;
+    --yellow: #ffc53d;
+    --yellow-soft: #5a4613;
+    --blue: #7b9bff;
+    --blue-soft: #253463;
+
+    --board-frame: #0f0c09;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px rgb(0 0 0 / 0.35);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-field: var(--field);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
+  --color-red: var(--red);
+  --color-green: var(--green);
+  --color-yellow: var(--yellow);
+  --color-blue: var(--blue);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  background-image:
+    radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--red) 9%, transparent), transparent 40%),
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--blue) 9%, transparent), transparent 40%),
+    radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--yellow) 8%, transparent), transparent 45%);
+  background-attachment: fixed;
+  min-height: 100dvh;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  letter-spacing: 0.01em;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease, background 0.12s ease;
+  user-select: none;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-ink);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--primary) 60%, black), 0 8px 18px color-mix(in srgb, var(--primary) 30%, transparent);
+}
+.btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--primary) 90%, white);
+}
+.btn-ghost {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--surface-2) 92%, var(--text));
+}
+
+.input {
+  width: 100%;
+  background: var(--field);
+  border: 1.5px solid transparent;
+  border-radius: 0.6rem;
+  padding: 0.85rem 1rem;
+  font-size: 1.05rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 18%, transparent);
+}
+
+/* ---- Board ---- */
+.pawn {
+  transition: transform 0.16s cubic-bezier(0.3, 0.7, 0.4, 1.3);
+}
+.pawn-movable {
+  cursor: pointer;
+}
+.pawn-movable .pawn-ring {
+  animation: pulse-ring 1s ease-in-out infinite;
+}
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.18); }
+}
+.pawn-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+/* The playing band alternates with a dark shade of its color (light values from Board.tsx FILL). */
+.base-blink {
+  animation-duration: 1.2s;
+  animation-timing-function: step-end;
+  animation-iteration-count: infinite;
+}
+.base-blink-red { animation-name: blink-red; }
+.base-blink-green { animation-name: blink-green; }
+.base-blink-yellow { animation-name: blink-yellow; }
+.base-blink-blue { animation-name: blink-blue; }
+@keyframes blink-red { 0% { fill: #e5484d; } 50%, 100% { fill: #a8282d; } }
+@keyframes blink-green { 0% { fill: #2f9e66; } 50%, 100% { fill: #1d6b43; } }
+@keyframes blink-yellow { 0% { fill: #f2b200; } 50%, 100% { fill: #a87b00; } }
+@keyframes blink-blue { 0% { fill: #3e63dd; } 50%, 100% { fill: #26419e; } }
+
+
+
+/* ---- Dice ---- */
+.dice-scene {
+  perspective: 600px;
+}
+.dice-cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1.1);
+}
+.dice-cube.rolling {
+  animation: dice-tumble 0.6s linear infinite;
+}
+@keyframes dice-tumble {
+  0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+  100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(180deg); }
+}
+.dice-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18%;
+  background: linear-gradient(145deg, #ffffff, #ece4d6);
+  border: 1px solid #d8ccb6;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 14%;
+  box-shadow: inset 0 -4px 8px rgb(0 0 0 / 0.08);
+  backface-visibility: hidden;
+}
+.dice-pip {
+  width: 72%;
+  height: 72%;
+  margin: auto;
+  border-radius: 50%;
+  background: #2a2118;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.5);
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pop-in {
+  animation: pop-in 0.25s ease-out both;
+}
+
+@keyframes toast-in {
+  0% { transform: translate(-50%, -12px); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pawn, .dice-cube { transition: none; }
+  .dice-cube.rolling, .pawn-movable .pawn-ring, .base-blink { animation: none; }
+}

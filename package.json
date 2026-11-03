@@ -4,11 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack && mkdir -p .next/standalone/public && cp -R public/. .next/standalone/public/ && cp -r .next/static .next/standalone/.next/static && rm -f ludo.zip && (cd .next/standalone && zip -rqX ../../ludo.zip . -x '*.DS_Store' '__MACOSX/*' 'node_modules/*')",
+    "build": "next build --turbopack && mkdir -p .next/standalone/public && cp -R public/. .next/standalone/public/ && cp -r .next/static .next/standalone/.next/static",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run",
-    "build-full": "next build --turbopack && mkdir -p .next/standalone/public && cp -R public/. .next/standalone/public/ && cp -r .next/static .next/standalone/.next/static && rm -f ludo.zip && (cd .next/standalone && zip -rqX ../../ludo.zip . -x '*.DS_Store' '__MACOSX/*' 'node_modules/@img/*darwin*')"
+    "test": "vitest run"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

@@ -6,7 +6,7 @@ const display = Fredoka({ variable: "--font-display", subsets: ["latin"], weight
 const body = Nunito({ variable: "--font-body", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ludo — entre amis",
+  title: "Ludo : jeu entre amis",
   description: "Joue au Ludo en ligne, de 2 à 4 joueurs, avec un simple code de salle.",
 };
 

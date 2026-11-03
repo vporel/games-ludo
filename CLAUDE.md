@@ -73,9 +73,6 @@ Dependencies flow downward: `src/game/` never imports from the UI, Next or Supab
 
 ## Manual operations
 
-When a change adds, removes or updates a dependency, say in the end-of-task report that the next
-deploy must use `npm run build-full` (the server's `node_modules` must be replaced).
-
 The developer runs migrations, sets keys in `.env.local` and changes Supabase settings
 themselves. Focus on code and tests; list any manual step needed in `à-faire.md` (in French).
 
@@ -88,8 +85,7 @@ unsure whether the latest one has been run.
 
 ```bash
 npm run dev      # dev server (Turbopack): http://localhost:3000/ludo, playground at /ludo/dev
-npm run build    # production build + ludo.zip WITHOUT node_modules (o2switch cPanel deploy)
-npm run build-full # same WITH node_modules: first deploy, or after adding/updating a package
+npm run build    # production build (standalone output, also run by the GitHub deploy workflow)
 npm test         # Vitest suite
 npm run lint     # ESLint
 npx tsc --noEmit # type checking

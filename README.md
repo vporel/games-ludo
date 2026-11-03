@@ -64,5 +64,4 @@ supabase/migrations  schéma, RLS (lecture membres uniquement), trigger « 4 jou
 - `npm run dev` : serveur de développement
 - `npm test` : tests unitaires (Vitest)
 - `npm run lint`
-- `npm run build` : build de production et archive `ludo.zip` **sans** `node_modules` (déploiement courant)
-- `npm run build-full` : même chose **avec** `node_modules` (premier déploiement, ou après l'ajout ou la mise à jour d'un package)
+- `npm run build` : build de production (sortie « standalone », lancé aussi par le workflow de déploiement GitHub)

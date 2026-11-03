@@ -1,0 +1,16 @@
+{
+  "pages": {
+    "/room/[code]/page": [
+      "static/chunks/ff1a16fafef87110.js",
+      "static/chunks/7d5fd19a460be294.js",
+      "static/chunks/c56513c7cadf35db.css",
+      "static/chunks/bb627bb9c3d1ebb3.js",
+      "static/chunks/a67e3fd9cb008f5b.js",
+      "static/chunks/430fb81a232ad679.js",
+      "static/chunks/1f2367512a135fec.js",
+      "static/chunks/841f20390e229d44.js",
+      "static/chunks/709f3339c4ee641e.js",
+      "static/chunks/turbopack-7742f73b9fec9f67.js"
+    ]
+  }
+}

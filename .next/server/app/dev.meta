@@ -1,0 +1,16 @@
+{
+  "status": 404,
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/dev/layout,_N_T_/dev/page,_N_T_/dev"
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/2f6b2ef572a38b5026d2891137d3c8e9cdd84dd946398fda9383bea521b5f8c5/$/dev",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/dev/page"
+    },
+    "isFallback": false
+  }
+}

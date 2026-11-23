@@ -28,11 +28,12 @@ Cloverly's objects.
 ### Security model: read this before adding a feature
 
 - **Sign-in is by pseudo only, with no password, by product choice.** Knowing a pseudo is enough
-  to sign in as that player. The Supabase password is `HMAC(PSEUDO_PASSWORD_SALT, pseudo)` with a
+  to sign in as that player. The Supabase password is `HMAC-SHA256(PSEUDO_PASSWORD_SALT, pseudo)` with a
   constant hardcoded in `src/app/actions/auth.ts`. This is intentional and accepted: the constant
   is not a secret and gives nothing beyond what the login page already gives.
 - **Never change `PSEUDO_PASSWORD_SALT`** (nor the derivation) once accounts exist: every existing
-  player would be locked out.
+  player would be locked out. It is shared with Domino (`../domino`), whose `auth.ts` must stay
+  identical.
 - **If a requested feature needs more security than "whoever knows the pseudo is the player"**
   (a PIN or password, private messages, personal data, purchases or anything of value, admin
   rights, moderation, persistent rankings that matter...), **stop and notify the developer before
@@ -51,10 +52,16 @@ src/game/             pure game engine, no dependency on React/Next/Supabase (te
   board.ts            15x15 grid geometry: track, home columns, bases, cell for a progress
   engine.ts           rules: createGame, applyRoll, movePawn, forfeit, autoPlay, standings
   describe.ts         French log lines for game events
-src/lib/              neutral helpers (pseudo, room code, types, game-row) + Supabase clients
+src/lib/              neutral helpers (pseudo, room code, types, game-row, base-path)
+src/lib/supabase/     Supabase clients: client (browser), server (cookies), admin (service_role), env
 src/server/rooms.ts   server-only DB access, optimistic locking on ludo_games.version
 src/app/actions/      Server Actions: auth.ts (pseudo sign-in), room.ts (lobby + game moves)
-src/components/       Board (SVG), Dice (3D CSS), GameView, Lobby, useRoom (realtime + polling)
+src/components/       Header, Footer, Logo, ShowcaseLink, plus one folder per area:
+  auth/               AuthForm, AuthPage (login and register)
+  home/               CreateRoomButton, JoinForm
+  room/               RoomClient, Lobby, useRoom (realtime + polling)
+  game/               Board (SVG), Dice (3D CSS), GameView, TurnTimer, useGameAnimation
+src/app/              pages: login, register, room/[code], auth/signout route, actions/
 src/app/dev/          local hot-seat playground without Supabase, development only (/dev)
 supabase/migrations/  SQL run by hand in the Supabase SQL Editor
 ```

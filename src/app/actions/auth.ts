@@ -15,11 +15,14 @@ export type AuthState = { error: string | null };
  * already gives). NEVER change it once accounts exist: every existing player would be locked out.
  * Any feature needing real per-player security (a PIN, private data, payments...) must replace
  * this scheme with a server-side secret first.
+ *
+ * The accounts are shared with the other vporel games (Domino): the constant and the derivation
+ * must stay identical in every game.
  */
-const PSEUDO_PASSWORD_SALT = "ludo.games.vporel.com/pseudo-auth/v1";
+const PSEUDO_PASSWORD_SALT = "games.vporel.com/pseudo-auth/v1";
 
 function derivePassword(pseudo: string): string {
-  return createHmac("sha256", PSEUDO_PASSWORD_SALT).update(`ludo:${pseudo}`).digest("base64url");
+  return createHmac("sha256", PSEUDO_PASSWORD_SALT).update(pseudo).digest("base64url");
 }
 
 function safeNext(next: FormDataEntryValue | null): string {

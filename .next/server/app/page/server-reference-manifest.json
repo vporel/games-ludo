@@ -1,0 +1,80 @@
+{
+  "node": {
+    "00d4c92bd4bd434ce470e1154faadc51dc007f6c43": {
+      "workers": {
+        "app/page": {
+          "moduleId": "23112",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/app/actions/auth.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "exportedName": "logout",
+      "filename": "src/app/actions/auth.ts"
+    },
+    "60158db23d0490ae1a0289ed27f914726e25b25a68": {
+      "workers": {
+        "app/page": {
+          "moduleId": "23112",
+          "async": false,
+          "exportedName": "register",
+          "filename": "src/app/actions/auth.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "exportedName": "register",
+      "filename": "src/app/actions/auth.ts"
+    },
+    "60d4dd315d9809212698cccf472a48a8aaacae97bf": {
+      "workers": {
+        "app/page": {
+          "moduleId": "23112",
+          "async": false,
+          "exportedName": "login",
+          "filename": "src/app/actions/auth.ts"
+        }
+      },
+      "layer": {
+        "app/page": "rsc"
+      },
+      "exportedName": "login",
+      "filename": "src/app/actions/auth.ts"
+    },
+    "0017cac882e627047c43bae42362822bba9f4eedd4": {
+      "workers": {
+        "app/page": {
+          "moduleId": "23112",
+          "async": false,
+          "exportedName": "createRoom",
+          "filename": "src/app/actions/room.ts"
+        }
+      },
+      "layer": {
+        "app/page": "action-browser"
+      },
+      "exportedName": "createRoom",
+      "filename": "src/app/actions/room.ts"
+    },
+    "60711201cf7465b84ba46d8eb09d1afbb1c605e510": {
+      "workers": {
+        "app/page": {
+          "moduleId": "23112",
+          "async": false,
+          "exportedName": "joinRoom",
+          "filename": "src/app/actions/room.ts"
+        }
+      },
+      "layer": {
+        "app/page": "action-browser"
+      },
+      "exportedName": "joinRoom",
+      "filename": "src/app/actions/room.ts"
+    }
+  },
+  "edge": {}
+}

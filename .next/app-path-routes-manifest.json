@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/auth/signout/route": "/auth/signout",
+  "/dev/page": "/dev",
+  "/favicon.ico/route": "/favicon.ico",
+  "/icon.svg/route": "/icon.svg",
+  "/login/page": "/login",
+  "/page": "/",
+  "/register/page": "/register",
+  "/room/[code]/page": "/room/[code]"
+}
